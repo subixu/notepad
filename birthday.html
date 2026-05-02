@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Birthday Surprise 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: Arial;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 42px;
+    }
+
+    #message {
+      font-size: 22px;
+      margin-top: 20px;
+      padding: 0 20px;
+      line-height: 1.6;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 28px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-900px); opacity: 0; }
+    }
+
+    #gift {
+      margin-top: 40px;
+      font-size: 80px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    #gift:hover {
+      transform: scale(1.2);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background: pink;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- 🎂 CHANGE NAME -->
+  <h1>Happy 20th Birthday HARI 💖</h1>
+
+  <!-- 💌 MESSAGE -->
+  <div id="message"></div>
+
+  <!-- 🎁 GIFT -->
+  <div id="gift">🎁</div>
+
+  <!-- 🎵 MUSIC -->
+  <br>
+  <button onclick="playMusic()">Play Song 🎵</button>
+  <audio id="song" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
+
+  <script>
+    // 💌 Story-style message
+    const messages = [
+      "You were the light in my darkest times...",
+      "Because of you, I started believing in love again 💖",
+      "You’ve changed so much for me, and I’m truly grateful...",
+      "I want you now... and forever 💫",
+      "May your 20s be filled with love, joy, and good health ✨",
+      "Let’s travel more, eat more, and make memories together 😭💖"
+    ];
+
+    let index = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+      if (index < messages.length) {
+        if (charIndex < messages[index].length) {
+          document.getElementById("message").innerHTML += messages[index].charAt(charIndex);
+          charIndex++;
+          setTimeout(typeLine, 40);
+        } else {
+          document.getElementById("message").innerHTML += "<br><br>";
+          index++;
+          charIndex = 0;
+          setTimeout(typeLine, 800);
+        }
+      } else {
+        // 💖 Final highlight
+        setTimeout(() => {
+          document.getElementById("message").innerHTML += "<br><b style='color:pink'>I want you forever 💖</b>";
+        }, 500);
+      }
+    }
+
+    typeLine();
+
+    // 💖 Floating hearts
+    function createHeart() {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = window.innerHeight + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 400);
+
+    // 🎁 Gift surprise
+    document.getElementById("gift").onclick = () => {
+      alert("Happy 20th Birthday 💖 You mean everything to me 😭✨");
+    };
+
+    // 🎵 Music
+    function playMusic() {
+      document.getElementById("song").play();
+    }
+
+    // 💫 Anti-gravity effect
+    document.body.onclick = () => {
+      document.querySelectorAll(".heart").forEach(h => {
+        h.style.animationDirection = "reverse";
+      });
+    };
+  </script>
+
+</body>
+
+</html>
